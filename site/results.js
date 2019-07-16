@@ -1,0 +1,27 @@
+function render() {
+    let a = allStorage();
+    var index;
+
+    for (index = a.length-1; index >= 0; --index) {
+        let previousHTML = document.getElementById("results").innerHTML;
+        document.getElementById("results").innerHTML = previousHTML + "<b>Match #" + JSON.parse(a[index]).matchNum + ":</b><br>" + "<canvas id=\"qrcode"+index+"\"></canvas><br>";
+    }
+
+    for (index = a.length-1; index >= 0; --index) {
+        qrcodegen.QrCode.encodeText(
+            a[index], qrcodegen.QrCode.Ecc.MEDIUM
+        ).drawCanvas(3, 1, document.getElementById("qrcode"+index));
+    }
+}
+
+function allStorage() {
+    var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while ( i-- ) {
+        values.push( localStorage.getItem(keys[i]) );
+    }
+
+    return values;
+}

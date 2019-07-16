@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QRCode Scouting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <script type="text/javascript"
+        src="qrcode.js">
+    </script>
+    <script type="text/javascript"
+        src="index.js">
+    </script>
+
+    <h1>QRCode Scouting</h1>
+    <form>
+        <fieldset>
+            <legend>Meta</legend>
+            <input onchange="calculate()" min=0 type=number id="matchNum"><label for="matchNum">Match Number</label><br>
+            
+            <p>Alliance Color</p>
+            <input onchange="calculate()" type="radio" name="allianceColor" id="red" value="red"><label for="red">Red</label><br> 
+            <input onchange="calculate()" type="radio" name="allianceColor" id="blue" value="blue"><label for="blue">Blue</label><br>
+            
+            <input onchange="calculate()" min=1 type=number id="team1"><label for="team1">Team 1 Number</label><br>
+            <input onchange="calculate()" min=1 type=number id="team2"><label for="team2">Team 2 Number</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Auto (Team 1)</legend>
+            <input onchange="calculate()" type="checkbox" id="land1"><label for="land1">Land</label>
+            <input onchange="calculate()" type="checkbox" id="sample1"><label for="sample1">Sample</label>
+            <input onchange="calculate()" type="checkbox" id="claim1"><label for="claim1">Claim</label>
+            <input onchange="calculate()" type="checkbox" id="park1"><label for="park1">Park</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Auto (Team 2)</legend>
+            <input onchange="calculate()" type="checkbox" id="land2"><label for="land2">Land</label>
+            <input onchange="calculate()" type="checkbox" id="sample2"><label for="sample2">Sample</label>
+            <input onchange="calculate()" type="checkbox" id="claim2"><label for="claim2">Claim</label>
+            <input onchange="calculate()" type="checkbox" id="park2"><label for="park2">Park</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>TeleOp (Team 1)</legend>
+            <input onchange="calculate()" min=0 type="number" id="cargoHoldMinerals1"><label for="cargoHoldMinerals">Minerals in the Cargo Hold</label><br>
+            <input onchange="calculate()" min=0 type="number" id="depotHoldMinerals1"><label for="depotHoldMinerals">Minerals in the Depot</label>
+        </fieldset>
+        
+        <fieldset>
+            <legend>TeleOp (Team 2)</legend>
+            <input onchange="calculate()" min=0 type="number" id="cargoHoldMinerals2"><label for="cargoHoldMinerals2">Minerals in the Cargo Hold</label><br>
+            <input onchange="calculate()" min=0 type="number" id="depotHoldMinerals2"><label for="depotHoldMinerals2">Minerals in the Depot</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Endgame (Team 1)</legend>
+            <input onchange="calculate()" type="radio" name="endgameState1" id="none1" value="none" checked="checked"><label for="none1">None</label><br> 
+            <input onchange="calculate()" type="radio" name="endgameState1" id="hang1" value="hang"><label for="hang1">Hang</label><br>
+            <input onchange="calculate()" type="radio" name="endgameState1" id="partialPark1" value="partialPark"><label for="partialPark1">Partial Park</label><br>
+            <input onchange="calculate()" type="radio" name="endgameState1" id="fullPark1" value="fullPark"><label for="fullPark1">Full Park</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>Endgame (Team 2)</legend>
+            <input onchange="calculate()" type="radio" name="endgameState2" id="none2" value="none" checked="checked"><label for="none2">None</label><br> 
+            <input onchange="calculate()" type="radio" name="endgameState2" id="hang2" value="hang"><label for="hang2">Hang</label><br>
+            <input onchange="calculate()" type="radio" name="endgameState2" id="partialPark2" value="partialPark"><label for="partialPark2">Partial Park</label><br>
+            <input onchange="calculate()" type="radio" name="endgameState2" id="fullPark2" value="fullPark"><label for="fullPark2">Full Park</label>
+        </fieldset>
+    </form>
+
+    <button onclick="calculate()">Calculate</button><br>
+
+    <b>Team 1 Score: </b><div id="score1"></div>
+    <b>Team 2 Score: </b><div id="score2"></div>
+    <b>Alliance Score: </b><div id="score"></div>
+
+    <canvas id="qrcode"></canvas><br>
+    <button onclick="save()" type="button">Save</button><br>
+
+    <a href="results.html">Results</a>
+</body>
+</html>
