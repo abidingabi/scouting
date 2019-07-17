@@ -1,5 +1,10 @@
 function render() {
     let a = allStorage();
+
+    if (a.length == 0) {
+        alert("You have no scouting data, go back to scoring to add data");
+    }
+
     var index;
 
     for (index = a.length-1; index >= 0; --index) {
@@ -11,6 +16,12 @@ function render() {
         qrcodegen.QrCode.encodeText(
             a[index], qrcodegen.QrCode.Ecc.MEDIUM
         ).drawCanvas(3, 1, document.getElementById("qrcode"+index));
+    }
+}
+
+function reset() {
+    if(confirm("Are you sure you want to reset ALL YOUR SCOUTING DATA")) {
+        localStorage.clear();
     }
 }
 
