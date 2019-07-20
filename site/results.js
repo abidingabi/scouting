@@ -9,7 +9,7 @@ function render() {
 
     for (index = a.length-1; index >= 0; --index) {
         let previousHTML = document.getElementById("results").innerHTML;
-        document.getElementById("results").innerHTML = previousHTML + "<b>Match #" + JSON.parse(a[index]).matchNum + ":</b><br>" + "<canvas id=\"qrcode"+index+"\"></canvas><br>";
+        document.getElementById("results").innerHTML = previousHTML + "<b>Match " + JSON.parse(a[index]).matchNum + " - " + JSON.parse(a[index]).allianceColor + ":</b><br>" + "<canvas id=\"qrcode"+index+"\"></canvas><br>";
     }
 
     for (index = a.length-1; index >= 0; --index) {
