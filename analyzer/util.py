@@ -1,9 +1,12 @@
 import json
+import sys
 
 class TeamResult:
     def __init__(self, team_content):
         self.num = team_content["num"]
-        
+                
+        if str(self.num) == "0": sys.exit("Invalid team number 0")
+
         self.auto_land = team_content["auto"]["land"]
         self.auto_sample = team_content["auto"]["sample"]
         self.auto_claim = team_content["auto"]["claim"]
@@ -12,7 +15,8 @@ class TeamResult:
         self.cargo_hold_minerals = int(team_content["teleOp"]["cargoHoldMinerals"])
         self.depot_minerals = int(team_content["teleOp"]["depotHoldMinerals"])
 
-        self.endgame_state = team_content["endgame"]["endgameState"]
+        self.endgame_state = team_content["endgame"]["endgameState"] 
+
 
     def score(self):
         return self.auto_score() + self.teleop_score() + self.endgame_score()
@@ -45,7 +49,10 @@ class TeamResult:
 class Result:
     def __init__(self, json_string):
         result = json.loads(json_string)
-        self.match_num = int(result["matchNum"]) 
+        self.match_num = int(result["matchNum"])
+        
+        if self.match_num == 0: sys.exit("Invalid match number 0")
+
         self.color = str(result["allianceColor"])
         self.team1 = TeamResult(result["team1"])
         self.team2 = TeamResult(result["team2"])
