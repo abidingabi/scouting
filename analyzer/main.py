@@ -3,15 +3,31 @@ import numpy as np
 import pyzbar.pyzbar as pyzbar
 import json
 import matplotlib.pyplot as plt
-from analyzer import analyze, draw
+import os.path
 
+from analyzer import analyze, draw
 from util import Result
+
+def print_result(result):
+    name = "Match Read: " + str(result.match_num) + " - " + result.color
+    print(name + ": " + str(result.team1.num) + " Score: " + str(result.team1.score()) + ", " + str(result.team2.num) + " Score: " + str(result.team2.score()))
+
 
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 font = cv2.FONT_HERSHEY_PLAIN
 
 registered_results = set()
 printed_names = set()
+
+filename = "match_results.txt"
+
+if os.path.isfile(filename): 
+    if input("Use existing match results? y/n: ").lower() == "y":
+        with open(filename) as f:
+            for line in f:
+                result = Result(line)
+                print_result(result)
+                registered_results.add(result)
 
 while True:
     _, frame = cap.read()
@@ -32,9 +48,11 @@ while True:
 
         name = "Match Read: " + str(result.match_num) + " - " + result.color
 
-        if name not in printed_names: 
+        if name not in printed_names:
             printed_names.add(name)
-            print(name + ": " + str(result.team1.num) + " Score: " + str(result.team1.score()) + ", " + str(result.team2.num) + " Score: " + str(result.team2.score()))
+            print_result(result)
+            with open(filename, "a+") as f:
+                f.write(str(obj.data)[2:-1])
 
     cv2.imshow("Frame", frame)
 
