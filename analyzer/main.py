@@ -52,7 +52,7 @@ while True:
             printed_names.add(name)
             print_result(result)
             with open(filename, "a+") as f:
-                f.write(str(obj.data)[2:-1])
+            f.write(str(obj.data)[2:-1] + "\n")
 
     cv2.imshow("Frame", frame)
 

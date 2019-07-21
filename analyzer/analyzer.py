@@ -31,7 +31,7 @@ def analyze(results):
 
 def draw(team_stats):
     if len(team_stats) == 0: exit("draw called with no data; exiting")
-    stats = OrderedDict(sorted(team_stats.items(), key=lambda item: item[1][1], reverse=True))
+    stats = OrderedDict(sorted(team_stats.items(), key=lambda item: item[1][1]))
 
     teams = list(stats.keys())
     team_range = np.arange(len(teams))
@@ -40,14 +40,14 @@ def draw(team_stats):
     mean_scores = list(map(lambda t: stats[t][1], stats))
     max_scores = list(map(lambda t: stats[t][2], stats))
 
-    plt.bar(team_range, max_scores, label='Maximum Score', color='xkcd:green')
-    plt.bar(team_range, mean_scores, label='Mean Score', color='xkcd:baby blue')
-    plt.bar(team_range, min_scores, label='Minimum Score', color='xkcd:red')
+    plt.barh(team_range, max_scores, label='Maximum Score', color='xkcd:green')
+    plt.barh(team_range, mean_scores, label='Mean Score', color='xkcd:baby blue')
+    plt.barh(team_range, min_scores, label='Minimum Score', color='xkcd:red')
 
-    plt.xticks(team_range, teams)
+    plt.yticks(team_range, teams)
     
-    plt.xlabel('Team')
-    plt.ylabel('Score')
+    plt.ylabel('Team')
+    plt.xlabel('Score')
 
     plt.title("Score Results")
 

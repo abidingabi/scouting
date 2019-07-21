@@ -1,4 +1,3 @@
+Make things like cycle count default to 0 
 Add buttons to make incrementing cycle count easier on mobile
 Add PWA
-Make server that scans + analyzes data (probably python, maybe something else)
-Let scouts draw auto paths (maybe with p5.js)? Have a few points and lines inbetween so size of qr code is small 

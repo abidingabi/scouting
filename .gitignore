@@ -2,3 +2,5 @@ analyzer/Include
 analyzer/Lib
 analyzer/Scripts
 analyzer/tcl
+analyzer/__pycache__
+analyzer/match_results.txt
