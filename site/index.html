@@ -7,70 +7,143 @@
     <title>QRCode Scouting</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <script type="text/javascript"
-        src="qrcode.js">
-    </script>
-    <script type="text/javascript"
-        src="index.js">
-    </script>
+<body>    
+    <script type="text/javascript" src="qrcode.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 
     <h1>QRCode Scouting</h1>
     <form>
         <fieldset>
             <legend>Match</legend>
-            <input onchange="calculate()" min=0 value=0 type=number id="matchNum"><label for="matchNum">Match Number</label><br>
+            <input onchange="calculate()" min=1 type=number id="matchnum">
+            <label for="matchnum">Match Number</label>
+            <br>
             
-            <p>Alliance Color</p>
-            <input onchange="calculate()" type="radio" name="allianceColor" id="red" value="red"><label for="red">Red</label><br> 
-            <input onchange="calculate()" type="radio" name="allianceColor" id="blue" value="blue"><label for="blue">Blue</label><br>
+            <select onchange="calculate()" id="alliancecolor">
+                <option value="blue">Blue</option>
+                <option value="red">Red</option>
+            </select>
+            <label for="alliancecolor">Alliance Color</label>
+            <br>
             
-            <input onchange="calculate()" min=1 value=0 type=number id="team1"><label for="team1">Team 1 Number</label><br>
-            <input onchange="calculate()" min=1 value=0 type=number id="team2"><label for="team2">Team 2 Number</label>
+            <input onchange="calculate()" min=1 type=number id="team1">
+            <label for="team1">Team 1 Number</label>
+            <br>
+            
+            <input onchange="calculate()" min=1 type=number id="team2">
+            <label for="team2">Team 2 Number</label>
         </fieldset>
 
         <fieldset>
             <legend>Auto (Team 1)</legend>
-            <input onchange="calculate()" type="checkbox" id="land1"><label for="land1">Land</label>
-            <input onchange="calculate()" type="checkbox" id="sample1"><label for="sample1">Sample</label>
-            <input onchange="calculate()" type="checkbox" id="claim1"><label for="claim1">Claim</label>
-            <input onchange="calculate()" type="checkbox" id="park1"><label for="park1">Park</label>
+
+            <input onchange="calculate()" type="number" value=0 min=0 max=2 id="skystonesdelivered1">
+            <label for="skystonesdelivered1">Valid Skystones Delivered</label>
+            <br>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="autostonesdelivered1">
+            <label for="autostonesdelivered1">Stones Delivered</label>
+            <br>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="autostonesplaced1">
+            <label for="autostonesplaced1">Stones Placed</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="repositioned1">
+            <label for="repositioned1">Foundation Repositioned</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="navigated1">
+            <label for="navigated1">Navigated</label>
         </fieldset>
 
         <fieldset>
             <legend>Auto (Team 2)</legend>
-            <input onchange="calculate()" type="checkbox" id="land2"><label for="land2">Land</label>
-            <input onchange="calculate()" type="checkbox" id="sample2"><label for="sample2">Sample</label>
-            <input onchange="calculate()" type="checkbox" id="claim2"><label for="claim2">Claim</label>
-            <input onchange="calculate()" type="checkbox" id="park2"><label for="park2">Park</label>
-        </fieldset>
 
+            <input onchange="calculate()" type="number" value=0 min=0 max=2 id="skystonesdelivered2">
+            <label for="skystonesdelivered2">Valid Skystones Delivered</label>
+            <br>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="autostonesdelivered2">
+            <label for="autostonesdelivered2">Stones Delivered</label>
+            <br>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="autostonesplaced2">
+            <label for="autostonesplaced2">Stones Placed</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="repositioned2">
+            <label for="repositioned2">Foundation Repositioned</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="navigated2">
+            <label for="navigated2">Navigated</label>
+        </fieldset>
+        
         <fieldset>
             <legend>TeleOp (Team 1)</legend>
-            <input onchange="calculate()" min=0 value=0 type="number" id="cargoHoldMinerals1"><label for="cargoHoldMinerals">Minerals in the Cargo Hold</label><br>
-            <input onchange="calculate()" min=0 value=0 type="number" id="depotHoldMinerals1"><label for="depotHoldMinerals">Minerals in the Depot</label>
+            
+            <input onchange="calculate()" type="number" value=0 min=0 id="stonesdelivered1">
+            <label for="stonesdelivered1">Stones Delivered</label>
+            <br>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="stonesplaced1">
+            <label for="stonesplaced1">Stones Placed</label>
         </fieldset>
         
         <fieldset>
             <legend>TeleOp (Team 2)</legend>
-            <input onchange="calculate()" min=0 value=0 type="number" id="cargoHoldMinerals2"><label for="cargoHoldMinerals2">Minerals in the Cargo Hold</label><br>
-            <input onchange="calculate()" min=0 value=0 type="number" id="depotHoldMinerals2"><label for="depotHoldMinerals2">Minerals in the Depot</label>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="stonesdelivered2">
+            <label for="stonesdelivered2">Stones Delivered</label>
+            <br>
+
+            <input onchange="calculate()" type="number" value=0 min=0 id="stonesplaced2">
+            <label for="stonesplaced2">Stones Placed</label>
+        </fieldset>
+
+        <fieldset>
+            <legend>TeleOp</legend>
+            <input onchange="calculate()" type="number" value=0 min=0 id="tallestskyscraperheight">
+            <label for="tallestskyscraperheight">Tallest Skyscraper Height</label>
         </fieldset>
 
         <fieldset>
             <legend>Endgame (Team 1)</legend>
-            <input onchange="calculate()" type="radio" name="endgameState1" id="none1" value="none" checked="checked"><label for="none1">None</label><br> 
-            <input onchange="calculate()" type="radio" name="endgameState1" id="hang1" value="hang"><label for="hang1">Hang</label><br>
-            <input onchange="calculate()" type="radio" name="endgameState1" id="partialPark1" value="partialPark"><label for="partialPark1">Partial Park</label><br>
-            <input onchange="calculate()" type="radio" name="endgameState1" id="fullPark1" value="fullPark"><label for="fullPark1">Full Park</label>
+
+            <input onchange="calculate()" type="checkbox" id="capped1">
+            <label for="capped1">Capstone Placed</label>
+            <br>
+            
+            <input onchange="calculate()" type="number" value=0 min=0 id="capstoneheight1">
+            <label for="capstoneheight1">Capstone Height</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="foundationmoved1">
+            <label for="foundationmoved1">Foundation Moved Out Of Building Site</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="parked1">
+            <label for="parked1">Parked</label>
         </fieldset>
 
         <fieldset>
             <legend>Endgame (Team 2)</legend>
-            <input onchange="calculate()" type="radio" name="endgameState2" id="none2" value="none" checked="checked"><label for="none2">None</label><br> 
-            <input onchange="calculate()" type="radio" name="endgameState2" id="hang2" value="hang"><label for="hang2">Hang</label><br>
-            <input onchange="calculate()" type="radio" name="endgameState2" id="partialPark2" value="partialPark"><label for="partialPark2">Partial Park</label><br>
-            <input onchange="calculate()" type="radio" name="endgameState2" id="fullPark2" value="fullPark"><label for="fullPark2">Full Park</label>
+
+            <input onchange="calculate()" type="checkbox" id="capped2">
+            <label for="capped2">Capstone Placed</label>
+            <br>
+            
+            <input onchange="calculate()" type="number" value=0 min=0 id="capstoneheight2">
+            <label for="capstoneheight2">Capstone Height</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="foundationmoved2">
+            <label for="foundationmoved2">Foundation Moved Out Of Building Site</label>
+            <br>
+
+            <input onchange="calculate()" type="checkbox" id="parked2">
+            <label for="parked2">Parked</label>
         </fieldset>
     </form>
 
