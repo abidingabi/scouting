@@ -19,21 +19,43 @@ matches = addScoreToMatch(matchesWithoutScore)
 
 matchesWithJustScores <- matches[c(1, 13:16)]
 
-averageTeamResults = aggregate(autoScore ~ teamNum, matchesWithJustScores, mean)
-averageTeamResults$teleOpScore = aggregate(teleOpScore ~ teamNum, matchesWithJustScores, mean)[,2]
-averageTeamResults$endgameScore = aggregate(endgameScore ~ teamNum, matchesWithJustScores, mean)[,2]
-averageTeamResults$score = aggregate(score ~ teamNum, matchesWithJustScores, mean)[,2]
+averageTeamResults = aggregate(autoScore ~ teamNum, matches, mean)
+averageTeamResults$teleOpScore = aggregate(teleOpScore ~ teamNum, matches, mean)[,2]
+averageTeamResults$endgameScore = aggregate(endgameScore ~ teamNum, matches, mean)[,2]
+averageTeamResults$score = aggregate(score ~ teamNum, matches, mean)[,2]
+averageTeamResults$autoStonesDelivered = aggregate(autoStonesDelivered ~ teamNum, matches, mean)[,2]
+averageTeamResults$stonesDelivered = aggregate(stonesDelivered ~ teamNum, matches, mean)[,2]
+averageTeamResults$autoStonesPlaced = aggregate(autoStonesPlaced ~ teamNum, matches, mean)[,2]
+averageTeamResults$stonesPlaced = aggregate(stonesPlaced ~ teamNum, matches, mean)[,2]
 
 ggplot(averageTeamResults, aes(
                                x = autoScore,
-                               y = (teleOpScore),
+                               y = teleOpScore,
                                color=endgameScore)) +
-    geom_text(aes(label = averageTeamResults$teamNum), size = 3)
-#    labs(title = "Score TL;DR",
-#         caption = "Autonomous Score vs TeleOp and Endgame Score",
-#         x = "TeleOp + Endgame Score",
-#         y = "Autonomous Score")
-   
+    geom_text(aes(label = averageTeamResults$teamNum), size = 3) +
+    labs(title = "Scores",
+         x = "TeleOp + Endgame Score",
+         y = "Autonomous Score",
+         color = "End Game Score")
+
+
+ggplot(averageTeamResults, aes(
+                               x = autoStonesDelivered,
+                               y = autoStonesPlaced)) +
+    geom_text(aes(label = averageTeamResults$teamNum), size = 3) +
+    labs(title = "Auto Stones",
+         x = "Auto Stones Delivered",
+         y = "Auto Stones Placed")
+
+
+ggplot(averageTeamResults, aes(
+                               x = stonesPlaced,
+                               y = stonesDelivered)) +
+    geom_text(aes(label = averageTeamResults$teamNum), size = 3) +
+    labs(title = "TeleOp Stones",
+         x = "Stones Delivered",
+         y = "Stones Placed")
+
 #color = stonesDelivered)) +
 #                    alpha = climbRate)) + 
 #  labs(title = "Scale Robot Exploration", 
