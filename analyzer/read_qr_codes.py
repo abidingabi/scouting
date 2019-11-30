@@ -36,15 +36,45 @@ cv2.destroyAllWindows()
 
 with open(filename, "a") as csvfile:
     writer = csv.writer(csvfile)
+
+    writer.writerow([
+        'matchNum', 
+        'allianceColor', 
+        'tallestSkyscraper',
+        'teamNum',
+        'skystonesDelivered',
+        'autoStonesDelivered',
+        'autoStonesPlaced',
+        'foundationRepositioned',
+        'navigated',
+        'stonesDelivered',
+        'stonesPlaced',
+        'capped',
+        'capstoneHeight',
+        'foundationMoved',
+        'parked',
+        'teamNum2',
+        'skystonesDelivered2',
+        'autoStonesDelivered2',
+        'autoStonesPlaced2',
+        'foundationRepositioned2',
+        'navigated2',
+        'stonesDelivered2',
+        'stonesPlaced2',
+        'capped2',
+        'capstoneHeight2',
+        'foundationMoved2',
+        'parked2'])
+
     
     for data in matches_read:
         match = json.loads(data)
-        
+
         fields = [
             match['matchNum'], 
-            match['allianceColor'], 
+            match['allianceColor'],
             match['tallestSkyscraper'], 
-            match['team1']['num'], 
+            match['team1']['num'],
             match['team1']['auto']['skystonesDelivered'],
             match['team1']['auto']['stonesDelivered'],
             match['team1']['auto']['stonesPlaced'],
