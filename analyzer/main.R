@@ -1,4 +1,5 @@
 library(tidyverse)
+library(rmarkdown)
 
 source("util.R")
 
@@ -34,10 +35,9 @@ ggplot(averageTeamResults, aes(
                                color=endgameScore)) +
     geom_text(aes(label = averageTeamResults$teamNum), size = 3) +
     labs(title = "Scores",
-         x = "TeleOp + Endgame Score",
+         x = "TeleOp Score",
          y = "Autonomous Score",
          color = "End Game Score")
-
 
 ggplot(averageTeamResults, aes(
                                x = autoStonesDelivered,
@@ -55,12 +55,3 @@ ggplot(averageTeamResults, aes(
     labs(title = "TeleOp Stones",
          x = "Stones Delivered",
          y = "Stones Placed")
-
-#color = stonesDelivered)) +
-#                    alpha = climbRate)) + 
-#  labs(title = "Scale Robot Exploration", 
-#       caption = "Data collected by FRC 1712", 
-#       x = "Mean total cubes per match", 
-#       y = "Mean scale cubes per match",
-#       color = "Do they have a two-cube scale auto?") 
-
